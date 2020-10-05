@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Liminality Airdrop</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../../../favicon.ico">
+<link href="https://fonts.googleapis.com/css?family=Dosis:200,400,600" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono:400" rel="stylesheet">
+<script src="https://use.fontawesome.com/5e2e2f7f29.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<!-- Custom styles for this template -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Custom Styles  -->
+<link href="css/liminality.css" rel="stylesheet">
+</head>
+<body>
+<!-- Header Nav Nested-->
+<div class="container-fluid header-nav">
+  <div class="row">
+    <div class="col-md">
+      <nav class="navbar navbar-inverse navbar-fixed-top container-fluid gradient-background">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand pull-left" href="index"><img src="media/logo_liminality50x40.png"></a>
+            <div class="pull-left brand-title"><a href="index.html">Liminality</a></div>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right liminality-nav">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="whitepaper.html">White Paper</a></li>
+              <li><a href="preico.html">Pre-Ico</a></li>
+              <li><a href="airdrop.html">Airdrop</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<section class="airdrop">
+  <div class="container introduction">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center jumbo-headline"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;Airdrop</h2>
+      </div>
+      <div class="col-md-5">
+        <p class="text-justify">We got three airdrop events planned, specially allocated to our Bounty budget. One happening now, in December. Another one in January. And the last one will be in February, most likely with different rules. Participation is pretty simple.</p>
+      </div>
+      <div class="col-md-6 col-md-offset-1">
+        <b><p>The event is now SUSPENDED - Our Pre-ICO is launching.</p>
+        <p>You only need to follow those two simple steps to claim your free Limins:</p>
+        <ul class="fa-ul">
+          <li><i class="fa-li fa fa-arrow-circle-right"></i>Join <a style='color:white; text-decoration: underline;' href='https://t.me/joinchat/GRzvHwvw_G5n8ao5jjZCwg'>our Telegram Group</a>, and ask how to contact our Telegram Bot. Then message our bot with: 'I want to participate to the airdrop. Here is my email:  YOUREMAILHERE'</li>
+          <li><i class="fa-li fa fa-arrow-circle-right"></i>The Bot will then give you a unique identifier. Keep it preciously. Congratulations, you're in !</li>
+        </ul>
+      </div>
+      <div class="col-md-12">
+        <div class="spacer">&nbsp;</div>
+        <p class="text-center">Your identifier will then appear on that list (auto refreshed regularly).</p>
+      </div>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="table-responsive">
+          <table id="table" class="table">
+            <tr>
+              <th class="td-middle">
+                Email <a href="#" class="pull-right"><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+              </th>
+              <th>
+                Public Identifier <a href="#" class="pull-right"><i class="fa fa-sort" aria-hidden="true"></i></a>
+              </th>
+              <th>
+                Timestamps <a href="#" class="pull-right"><i class="fa fa-sort" aria-hidden="true"></i></a>
+              </th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<script type="text/javascript">
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+
+  function refresh_list() {
+    $.ajax({
+      url: 'https://liminalitynetwork.github.io/Airdrop/data.json',
+      dataType: 'json',
+      async: true,
+      method: "GET",
+      success: function(response){
+          // convert string to JSON
+        var userData = "<tr><th class='td-middle'> Email <a href='#' class='pull-right'><i class='fa fa-sort-desc' aria-hidden='true'></i></a> </th> <th class='td-middle'> Public Identifier <a href='#' class='pull-right'><i class='fa fa-sort' aria-hidden='true'></i></a> </th> <th class='td-middle'> Timestamps <a href='#' class='pull-right'><i class='fa fa-sort' aria-hidden='true'></i></a> </th></tr>";
+
+        $.each(response, function(i, item) {
+
+          userData += '<tr>';
+          userData += '<td class="td-middle">'+item.email+'</td>';
+          userData += '<td class="td-middle">'+item.public_code+'</td>';
+          userData += '<td class="td-middle">'+item.created_at+'</td>';
+          userData += '</tr>';
+
+        });
+        $('#table').html(userData);
+      }
+    });
+  }
+  setInterval(function() {
+
+    refresh_list();
+
+
+  },  25000);
+
+  refresh_list();
+</script>
+
+<!-- /container -->
+<footer class="container">
+  <p>Liminality 2017. Patents pending | <a href="terms.html">Terms of Service</a></p>
+</footer>
+</body>
+</html>

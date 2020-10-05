@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+		<form>
+      <br>
+      <input type="text" id="email" placeholder="email"/>
+      <input type="text" id="passphrase" placeholder="passphrase"/>
+
+  			Recaptcha: <div class="g-recaptcha" data-sitekey=6Le4jzoUAAAAAP8lGHbVfaUTFWxZfTt_Jmu4GG6K></div>
+  			<input type='submit' />
+		</form>
+
+		<form>
+      <br>
+      <input type="text" id="email" placeholder="email"/>
+      <input type="text" id="passphrase" placeholder="passphrase"/>
+
+  			Recaptcha: <div class="g-recaptcha" data-sitekey=6Le4jzoUAAAAAP8lGHbVfaUTFWxZfTt_Jmu4GG6K></div>
+  			<input type='submit' />
+		</form>
+		<script>
+			$(document).ready(function() {
+			  var contactForm = $("#formBitcoin");
+			  //We set our own custom submit function
+			  contactForm.on("submit", function(e) {
+
+			    //Prevent the default behavior of a form
+			    e.preventDefault();
+
+			    //Get the values from the form
+			    var email   = $("#btcEmail1").val();
+			    var passphrase    = $("#passphraseBitcoin").val();
+			    //Our AJAX POST
+			    $.ajax({
+			      type: "POST",
+			      url: "http://localhost:3000/users",
+			      data: {
+			        'user[email]': email,
+              'user[passphrase]': passphrase,
+			        //THIS WILL TELL THE FORM IF THE USER IS CAPTCHA VERIFIED.
+			        captcha: grecaptcha.getResponse()
+			      },
+            success: function(json) {
+               response = JSON.stringify(json.topics);
+               if (response['message'] != '') {
+                  alert(response['message']);
+               }
+            },
+			    })
+			  });
+			});
+
+			$(document).ready(function() {
+			  var contactForm = $("#formEth");
+			  //We set our own custom submit function
+			  contactForm.on("submit", function(e) {
+
+			    //Prevent the default behavior of a form
+			    e.preventDefault();
+
+			    //Get the values from the form
+			    var email   = $("#ethEmail1").val();
+			    var passphrase    = $("#passphraseEther").val();
+			    //Our AJAX POST
+			    $.ajax({
+			      type: "POST",
+			      url: "http://localhost:3000/users",
+			      data: {
+			        'user[email]': email,
+              'user[passphrase]': passphrase,
+			        //THIS WILL TELL THE FORM IF THE USER IS CAPTCHA VERIFIED.
+			        captcha: grecaptcha.getResponse(recaptcha2)
+			      },
+            success: function(json) {
+               response = JSON.stringify(json.topics);
+               if (response['message'] != '') {
+                  alert(response['message']);
+               }
+            },
+			    })
+			  });
+			});
+		</script>
+	</body>
+</html>
